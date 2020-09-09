@@ -1,0 +1,22 @@
+<h1> LIST PAGE</h1>
+
+
+
+
+    {% for i in photos %}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 panel panel-default">
+                <p><img src="{{ i.photo.url }}" style="width:100%;" ></p>
+                <button type="button" class="btn btn-xs btn-info">
+                    {{ i.author.username }}
+                </button>
+                <p>{{ i.text|linebreaksbr}}</p>
+                <p class="text-right">
+                    <a href="{ % url 'photo:detail' pk=i.id %}"
+                       class=""btn btn-xs btn-success"></a>
+                </p>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    {% endfor %}

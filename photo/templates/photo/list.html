@@ -1,8 +1,10 @@
-<h1> LIST PAGE</h1>
+{% extends 'base.html' %}
 
+{% block title %}
+- LIST
+{% endblock %}
 
-
-
+{% block content %}
     {% for i in photos %}
         <div class="row">
             <div class="col-md-2"></div>
@@ -13,10 +15,11 @@
                 </button>
                 <p>{{ i.text|linebreaksbr}}</p>
                 <p class="text-right">
-                    <a href="{ % url 'photo:detail' pk=i.id %}"
-                       class=""btn btn-xs btn-success"></a>
+                    <a href="{% url 'photo:detail' pk=i.id %}"
+                       class="btn btn-xs btn-success">댓글달기</a>
                 </p>
             </div>
             <div class="col-md-2"></div>
         </div>
     {% endfor %}
+{% endblock %}

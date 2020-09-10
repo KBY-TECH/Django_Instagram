@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 # SECURITY WARNING: keep the secret key used in production secret!
 from pathlib import Path
+import os
+from .secret_key import MY_SECRET_KEY
 
+SECRET_KEY=MY_SECRET_KEY
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'photo',
+    'accounts',
+    'disqus',
+    'django.contrib.sites',
+
 ]
 
 MIDDLEWARE = [
@@ -54,7 +61,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +126,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL='/media/' # 외부 사람이 잘 못할떄에
-import os
+MEDIA_URL='/media/' # 외부 사람이 잘 알지 못하게
+
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+# reverse_lazy 함수를 사용해서 다른 뷰를 적용할 수 있다.
+LOGIN_REDIRECT_URL='/'
+
+DISQUS_WEBSITE_SHORTNAME = 'django-instagram-1'
+SITE_ID = 1

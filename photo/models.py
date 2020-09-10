@@ -20,4 +20,4 @@ class Photo(models.Model):
         return self.author.username + " " + self.created.strftime("%Y-%m-%d %H:%M:%S")
 
     def get_absolute_url(self): #객체 상세 페이지 주소 반환 , 상세 화면으로 이동하는 링크를 만들때 호출
-        return reverse('photo:photo_detail', args=[str(self.id)])
+        return reverse('photo:detail', args=[str(self.id)])

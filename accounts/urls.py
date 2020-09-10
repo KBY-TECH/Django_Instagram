@@ -14,21 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+from django.contrib.auth import views as auth_view
 from .views import *
-
-# delete view
-from django.views.generic.detail import DetailView
-from .models import Photo
-# 2차 url file
-app_name = 'photo'
-
+# profile 페이지 만들지 않고 설정으로 변경하여 보내기
+# 웹 서버 에서 설정 redirect
 urlpatterns = [
-    path('',list,name='list'),
-    path('upload/',PhotoUploadView.as_view(),name='upload'),
-    path('detail/<int:pk>/',DetailView.as_view(
-        model=Photo,template_name='photo/detail.html'
-    )
-         ,name='detail'),
-    path('delete/<int:pk>/',PhotoDeleteView.as_view(),name='delete'),
-    path('update/<int:pk>/',PhotoUpdateView.as_view(),name='update'),
+    path('login/',auth_view.LoginView.as_view(),name='login'),
+    path('logout/',auth_view.LogoutView.as_view(
+        template_name='registration/logout.html'
+    ),name='logout'),
+    path('register/',register,name='register'),
 ]
+

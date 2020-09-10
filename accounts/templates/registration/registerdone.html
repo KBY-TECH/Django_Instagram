@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+- ACCOUNTS REGISTER WRITE SUCCESS
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 panel panel-default">
+        <div class="alert alert-info"> ACCOUNTS REGISTER WRITE SUCCESS</div>
+        <h1>ID  ->   {{new_user.username}}</h1>
+        <h2>email  ->  {{new_user.email}}</h2>
+        <a class="btn btn-primary" href="{% url 'login' %}">LOGIN GO </a>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+{% endblock %}
